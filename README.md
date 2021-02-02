@@ -1,5 +1,5 @@
 # cura-makergear-m3-id
-Cura machine settings and extruder profiles for the MakerGear M3-ID. Start and end gcode is for IDEX (Independent Dual Extrusion) only.
+Cura machine settings and extruder profiles for the MakerGear M3-ID. These settings are for IDEX (Independent Dual Extrusion) only.
 
 Use start-gcode instead of simple-start-gcode. simple-start-gcode results in worse prints.
 
