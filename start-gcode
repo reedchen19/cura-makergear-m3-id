@@ -1,0 +1,47 @@
+;Both ExtrudersM3 ID T0/T1 starting script T1 purges first T0 purges second
+;turn off T0 hot end to reduce ooze on the bed during startup. NOTE: this does not explicitly wait for the hotends to totally cool down
+M104 T0 S0
+M140 S{material_bed_temperature_layer_0} ;turn on bed
+M190 S{material_bed_temperature_layer_0} ;wait for bed to get to temp
+T0;
+M211 S1 ; turn on soft endstops to protect the machine
+M605 S0
+G28 ; home all axes
+;Get hot end up to temp
+M104 T0 S{material_print_temperature_layer_0}
+M104 T1 S{material_print_temperature_layer_0}
+M109 T0 S{material_print_temperature_layer_0}
+M109 T1 S{material_print_temperature_layer_0}
+G1 X25 F9000; move T0 past bedclips as to not damage probe
+T1 ; Switch to left extruder
+G1 X215 Y210 Z0.1 F10000 ; move off the bed and bring the bed up
+G92 E0 ; zero extruder
+G1 X195 Z0.1 F1000; scrape off any ooze
+G1 Z10 ; lift
+M211 S0 ; turn off soft endstops for purge moves
+G1 X100 Y240 F10000; move to unused back edge
+G1 Z0.30 F1000
+G1 X180 E9.25 F1000; deposit extrusion line
+G1 Y239 E9.45 F1000 ; move and extrude y
+G1 X130 E17.05; lift F1000; deposit extrusion line
+G1 X100 Z0.05 F1000 ; wipe off tail
+G92 E0; zero extruder
+G1 Z10 Y225 ; move back to safe bounds
+G1 X252 F4800; move T1 home;
+T0;
+G1 X205 Y210 Z0.1 F10000 ; move off the bed and bring the bed up
+G92 E0 ; zero extruder
+G1 X195 Z0.1 F1000; scrape off any ooze
+G1 Z10 ; lift
+G1 X100 Y240 F10000; move to unused back edge
+G1 Z0.30 F1000
+G1 X20 E9.25 F1000; deposit extrusion line
+G1 Y239 E9.45 F1000 ; move and extrude y
+G1 X70 E17.05; lift F1000; deposit extrusion line
+G1 X100 Z0.05 F1000 ; wipe off tail
+G92 E0; zero extruder
+G1 Z10 Y225 ; move back to safe bounds
+M211 S1 ; turn on soft endstops 
+;— Ensure printer is in parked print mode
+M605 S1
+G92 E0; ok now you can start
