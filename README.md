@@ -53,4 +53,4 @@ Extruder profiles are mostly default with a few changes:
 * 60 mm/s travel speed
 * ooze shield enabled
 
-Feel free to modify extruder profiles
+Feel free to modify extruder profiles and printhead settings, as well as anything else.
