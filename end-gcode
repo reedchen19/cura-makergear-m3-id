@@ -1,0 +1,12 @@
+M104 S0 ; turn off extruder
+M104 S0 T0 ; turn off extruder
+M104 S0 T1; turn off extruder
+M140 S0 ; turn off bed
+M106 S0 ; turn off cooling fan
+G91 ; relative mode
+G1 Z20 ; move Z down 20mm if possible Max endstop will catch it if it is to far
+G90;  absolute mode
+G28 X ; home tool/s
+T0 ; defualt tool should always be T0
+G1 Y230 F10000 ; move build plate out
+M84 ; disable motors
